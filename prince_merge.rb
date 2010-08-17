@@ -3,41 +3,22 @@ require 'bundler'
 
 Bundler.setup
 
+require 'ostruct'
 require 'haml'
 require 'prince-ruby'
 require 'fastercsv'
 
-class Recipient
-  @@attributes = %w{
-    name
-    address_one
-    address_two
-    address_three
-    city
-    state
-    postal_code
-    country
-  }
-
-  attr_accessor *@@attributes
-
+class Recipient < OpenStruct
   def self.load_from_csv(file)
     recipients = []
     FasterCSV.foreach(file, :headers => true) do |row|
-      recipient = self.new
-      @@attributes.each {|attr| recipient.send("#{attr}=", row[attr])}
-      recipients << recipient
+      recipients << new(row.to_hash.delete_if {|k,v| k == nil})
     end
     recipients
   end
 end
 
-csv         = ARGV[0]
-pdf         = ARGV[1]
-recipients  = Recipient.load_from_csv(csv)
-prince      = Prince.new
-template    = File.read(ARGV[2] || 'standard_envelope.haml')
-haml_engine = Haml::Engine.new(template)
-html        = haml_engine.render(Object.new, :recipients => recipients)
+template = File.read(ARGV[2] || 'standard_envelope.haml')
+html     = Haml::Engine.new(template).render(Object.new, :recipients => Recipient.load_from_csv(ARGV[0]))
 
-prince.html_to_file(html, pdf)
+Prince.new.html_to_file(html, ARGV[1])
