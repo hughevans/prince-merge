@@ -8,27 +8,25 @@ require 'prince-ruby'
 require 'fastercsv'
 
 class Recipient
-  attr_accessor :name, :address_one, :address_two, :address_three, :city, :state, :postal_code, :country
+  @@attributes = %w{
+    name
+    address_one
+    address_two
+    address_three
+    city
+    state
+    postal_code
+    country
+  }
 
-  def initialize(args)
-    args.each do |k,v|
-      instance_variable_set("@#{k}", v) unless v.nil? || v == ''
-    end
-  end
+  attr_accessor *@@attributes
 
   def self.load_from_csv(file)
     recipients = []
     FasterCSV.foreach(file, :headers => true) do |row|
-      recipients << self.new(
-        :name          => row['name'],
-        :address_one   => row['address_one'],
-        :address_two   => row['address_two'],
-        :address_three => row['address_three'],
-        :city          => row['city'],
-        :state         => row['state'],
-        :postal_code   => row['postal_code'],
-        :country       => row['country']
-      )
+      recipient = self.new
+      @@attributes.each {|attr| recipient.send("#{attr}=", row[attr])}
+      recipients << recipient
     end
     recipients
   end
