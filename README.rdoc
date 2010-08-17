@@ -1,0 +1,25 @@
+== Prince Merge
+
+Generate multiple addressed PDFs with the wonderful PrinceXML http://princexml.com/.
+
+== Usage
+
+  ruby prince_merge.rb addresses.csv mailrun.pdf
+
+The first argument is the CSV containing the recipients. The CSV file requires the following headers/columns:
+
+  name,address_one,address_two,address_three,city,state,postal_code,country
+
+The second argument is file for output. Also there is an optional third argument for specifying a new HAML template:
+
+  ruby prince_merge.rb addresses.csv mailrun.pdf letter.haml
+
+== TODO
+
+* Make and publish Gem with an executable +prince_merge+
+* Add usage with a +--help+ switch
+* Error handling
+
+== Copyright
+
+Copyright © 2010 Hugh Evans. See LICENSE for details.
