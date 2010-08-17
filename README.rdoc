@@ -10,7 +10,14 @@ http://princexml.com
 
 The first argument is the CSV containing the recipients. The CSV file requires the following headers/columns:
 
-  name,address_one,address_two,address_three,city,state,postal_code,country
+  name
+  address_one
+  address_two
+  address_three
+  city
+  state
+  postal_code
+  country
 
 The second argument is the file for output. Also there is an optional third argument for specifying a new HAML template:
 
