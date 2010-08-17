@@ -1,3 +1,4 @@
 Gemfile.lock
 *.pdf
 *.csv
+.bundle
