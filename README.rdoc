@@ -6,7 +6,7 @@ Generate multiple addressed PDFs with the excellent {PrinceXML}[http://princexml
 
   ruby prince_merge.rb addresses.csv mailrun.pdf
 
-The first argument is a CSV containing the recipients. The CSV file requires a headers row and the bundled +standard_envelope+ template requires the following:
+The first argument is a CSV containing the recipients. The CSV file needs a headers row and the bundled +standard_envelope.haml+ template requires the following:
 
   name
   address_one
@@ -24,11 +24,12 @@ The second argument is the file for output. There is also an optional third argu
 == TODO
 
 * Make and publish a gem with an executable +prince_merge+
-* Add some usage help
+* Add some inline usage
 * Error handling
 
 == Contributors
 
+* {Hugh Evans}[http://github.com/hughevans]
 * {Tim Riley}[http://github.com/timriley]
 
 == Copyright
