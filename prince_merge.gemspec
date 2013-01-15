@@ -5,8 +5,8 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 Gem::Specification.new do |gem|
   gem.name          = "prince_merge"
   gem.version       = "0.0.1"
-  gem.authors       = ["Hugh Evans"]
-  gem.email         = ["hugh@artpop.com.au"]
+  gem.authors       = ["Hugh Evans", "Jared Fraser"]
+  gem.email         = ["hugh@artpop.com.au", "dev@jsf.io"]
   gem.description   = %q{A mail merge for developers.}
   gem.summary       = %q{A mail merge for developers.}
   gem.homepage      = ""
