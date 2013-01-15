@@ -1,5 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
-gem 'haml',        '3.0.17'
-gem 'prince-ruby', '0.3.0'
-gem 'fastercsv',   '1.5.3'
+# Specify your gem's dependencies in prince_merge.gemspec
+gemspec

@@ -1,0 +1,50 @@
+!!!
+%html
+  %head
+    %style
+      :sass
+        @page
+          margin: 2cm
+          size: 22cm 11cm
+        body
+          background: #FFF
+          color: #000000
+          font-family: arial, "sans-serif"
+          font-size: 1em
+        .envelope
+          page-break-after: always
+          margin: 4cm 5cm
+        .name
+          margin-bottom: 0.3cm
+        .city_state_and_postal_code
+          margin-top: 0.1cm
+        .country
+          margin-top: 0.3cm
+        .postal_code
+          padding-left: 0.5cm
+  %body
+    - recipients.each do |recipient|
+      .envelope
+        .name
+          = recipient.name
+
+        .address_one
+          = recipient.address_one
+
+        - if recipient.address_two
+          .address_two
+            =recipient.address_two
+
+        - if recipient.address_three
+          .address_three
+            =recipient.address_three
+
+        .city_state_and_postal_code
+          == #{recipient.city},
+          = recipient.state
+
+          %span.postal_code
+            = recipient.postal_code
+
+        .country
+          = recipient.country.upcase
